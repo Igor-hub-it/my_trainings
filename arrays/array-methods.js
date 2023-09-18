@@ -265,3 +265,266 @@ let objArr = Object.values(person)
 
 // Ваш код здесь:
 let objEntries = Object.entries(person)
+
+// =========================
+// ДОПОЛНИТЕЛЬНЫЕ ЗАДАНИЯ: Комбинации методов
+// =========================
+
+// 11.1. Получите массив уникальных городов пользователей, отсортированных по алфавиту
+// Результат: ['Казань', 'Москва', 'СПб']
+
+// Ваш код здесь:
+let uniqCities = [...new Set(users.map(el => el.city).toSorted())]
+
+// 11.2. Создайте объект, где ключи - города, а значения - массивы имён пользователей
+// Результат: { 'Москва': ['Иван', 'Елена'], 'СПб': ['Мария'], 'Казань': ['Алексей'] }
+
+// Ваш код здесь:
+// let map = [...new Map(users.map(el => el.city), users.reduce((accum, el) => accum.push(el.name), []))]
+
+let cityUsers = users.reduce((accum, el) => {
+  if(!accum[el.city]) { accum[el.city] = [] }
+  accum[el.city].push(el.name)
+  return accum
+}, {})
+
+// 11.3. Найдите пользователя с самым длинным именем
+// Результат: { name: 'Алексей', age: 22, city: 'Казань' }
+
+// Ваш код здесь:
+// let maxName = users.reduce((accum, el) => {
+//   if(el.name.length > accum) {
+//     accum = el.name.length
+//   }
+//   return accum
+// }, 0);
+let maxName = users.find(el => 
+  el.name.length === Math.max(...users.map(el => el.name.length))
+)
+
+// 11.4. Создайте массив строк вида "Имя (возраст лет) из города"
+// Результат: ['Иван (25 лет) из Москва', 'Мария (30 лет) из СПб', ...]
+
+// Ваш код здесь:
+let dArr = users.map(el => `${el.name} (${el.age} лет) из ${el.city}`)
+
+// 11.5. Проверьте, есть ли пользователи с одинаковым возрастом
+// Результат: false (или true, если есть)
+
+// Ваш код здесь:
+if(users.length == [...new Set(users.map(el => el.age))].length) {
+  // return true
+} else { 
+  // return false
+}
+
+// =========================
+// ЗАДАНИЕ 12: Современные методы ES6+ (не изменяют исходный массив)
+// =========================
+
+// 12.1. Создайте отсортированную копию массива fruits (toSorted)
+// Результат: ['апельсин', 'банан', 'груша', 'киви', 'яблоко']
+// Примечание: исходный массив fruits не должен измениться
+
+// Ваш код здесь:
+let newFruits = fruits.toSorted()
+
+// 12.2. Создайте перевёрнутую копию массива numbers (toReversed)
+// Результат: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+// Примечание: исходный массив numbers не должен измениться
+
+// Ваш код здесь:
+let revArr = numbers.toReversed()
+
+// 12.3. Создайте копию массива с заменой элементов (toSpliced)
+// Замените элементы с индекса 2 на [100, 200, 300]
+// Результат: [1, 2, 100, 200, 300, 6, 7, 8, 9, 10]
+
+// Ваш код здесь:
+let splicedArr = numbers.toSpliced(2, 3, 100, 200, 300)
+
+// 12.4. Создайте копию массива с заменой элемента по индексу (with)
+// Замените элемент с индексом 3 на 999
+// Результат: [1, 2, 3, 999, 5, 6, 7, 8, 9, 10]
+
+// Ваш код здесь:
+let withArr = numbers.with(3, 999)
+
+// =========================
+// ЗАДАНИЕ 13: Работа с группами и агрегацией
+// =========================
+
+// 13.1. Создайте объект с группировкой пользователей по возрасту
+// Результат: { '22': [{ name: 'Алексей', age: 22, city: 'Казань' }], '25': [...], ... }
+
+// Ваш код здесь:
+// let ageObj = [...new Map([users.age, users.filter(user => user.age === )])]
+let ageObj = users.reduce((accum, user) => {
+  if(!accum[user.age]) accum[user.age] = []
+  accum[user.age].push(user)
+  return accum
+}, {})
+
+// 13.2. Найдите самый популярный город среди пользователей
+// Результат: 'Москва'
+
+const userss = [
+  { name: 'Иван', age: 25, city: 'СПб' },
+  { name: 'Мария', age: 30, city: 'Мос1ква' },
+  { name: 'Алексей', age: 16, city: 'Казань' },
+  { name: 'Елена', age: 28, city: 'Москва' }
+];
+
+// Ваш код здесь:
+let popCity = Object.entries(userss.reduce((acc, user) => {
+  acc[user.city] ? acc[user.city]++ : 1
+  return acc
+}), {})
+  .sort((a, b) => a - b)
+
+// console.log(userss.reduce((acc, user) => {
+//   acc[user.city] ? acc[user.city]++ : 1
+//   return acc
+// }), {})
+
+// 13.3. Создайте массив объектов с дополнительным полем isAdult (возраст >= 18)
+// Результат: [{ name: 'Иван', age: 25, city: 'Москва', isAdult: true }, ...]
+
+// Ваш код здесь:
+let usersWithAge = userss.map(el => ({
+  ...el,
+  isAdult: el.age >= 18
+}))
+
+// console.log(usersWithAge)
+
+// 13.4. Проверьте, все ли пользователи живут в разных городах
+// Результат: false (так как есть два пользователя из Москвы)
+
+// Ваш код здесь:
+let allInCity = userss.reduce((accum, el) => {
+  accum[el.city] = (accum[el.city] || 0) + 1
+  return accum
+}, {})
+
+let isDiffCity = Object.entries(allInCity).every(el => el === 1)
+// console.log(isDiffCity)
+
+// =========================
+// ЗАДАНИЕ 14: Сложные алгоритмы с массивами
+// =========================
+
+// 14.1. Найдите все пары чисел в массиве numbers, сумма которых равна 10
+// Результат: [[1, 9], [2, 8], [3, 7], [4, 6]]
+
+// Ваш код здесь:
+
+
+// 14.2. Создайте функцию, которая возвращает n самых молодых пользователей
+// Пример: getYoungestUsers(2) → [{ name: 'Алексей', age: 22, ... }, { name: 'Иван', age: 25, ... }]
+
+// Ваш код здесь:
+
+
+// 14.3. Создайте функцию, которая находит пользователей по частичному совпадению имени
+// Пример: findUsersByName('и') → [{ name: 'Иван', ... }, { name: 'Мария', ... }]
+
+// Ваш код здесь:
+
+
+// 14.4. Создайте функцию, которая возвращает статистику по пользователям
+// Результат: { total: 4, averageAge: 26.25, cities: ['Москва', 'СПб', 'Казань'], ageRange: { min: 22, max: 30 } }
+
+// Ваш код здесь:
+
+
+// =========================
+// ЗАДАНИЕ 15: Работа с вложенными структурами
+// =========================
+
+const departments = [
+  {
+    name: 'IT',
+    employees: [
+      { name: 'Анна', salary: 50000, skills: ['JavaScript', 'React'] },
+      { name: 'Борис', salary: 60000, skills: ['Python', 'Django'] },
+      { name: 'Виктория', salary: 55000, skills: ['JavaScript', 'Vue'] }
+    ]
+  },
+  {
+    name: 'HR',
+    employees: [
+      { name: 'Дмитрий', salary: 40000, skills: ['Communication'] },
+      { name: 'Елена', salary: 45000, skills: ['Recruitment', 'Communication'] }
+    ]
+  }
+];
+
+// 15.1. Найдите общее количество сотрудников во всех отделах
+// Результат: 5
+
+// Ваш код здесь:
+let employeesCount = departments.reduce((accum, el) => {
+  accum += el.employees.length
+  return accum
+}, 0)
+
+// console.log(employeesCount)
+
+// 15.2. Создайте массив всех уникальных навыков сотрудников
+// Результат: ['JavaScript', 'React', 'Python', 'Django', 'Vue', 'Communication', 'Recruitment']
+
+// Ваш код здесь:
+let uniqSkills = [...new Set(departments.reduce((accum, el) => {
+  accum = accum.concat(...el.employees.reduce((acc, user) => {
+    acc.push(...user.skills)
+    return acc
+  }, []))
+  return accum
+}, []))]
+
+console.log(uniqSkills)
+
+
+// 15.3. Найдите отдел с самой высокой средней зарплатой
+// Результат: { name: 'IT', averageSalary: 55000 }
+
+// Ваш код здесь:
+
+
+// 15.4. Создайте объект с количеством сотрудников по навыкам
+// Результат: { 'JavaScript': 2, 'React': 1, 'Python': 1, 'Django': 1, 'Vue': 1, 'Communication': 2, 'Recruitment': 1 }
+
+// Ваш код здесь:
+
+
+// =========================
+// ЗАДАНИЕ 16: Производительность и оптимизация
+// =========================
+
+// 16.1. Создайте функцию, которая находит дубликаты в массиве за O(n)
+const duplicateNumbers = [1, 2, 3, 4, 2, 5, 6, 3, 7, 8, 1];
+// Результат: [1, 2, 3]
+
+// Ваш код здесь:
+
+
+// 16.2. Создайте функцию, которая находит пересечение двух массивов
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [3, 4, 5, 6, 7];
+// Результат: [3, 4, 5]
+
+// Ваш код здесь:
+
+
+// 16.3. Создайте функцию, которая проверяет, является ли массив палиндромом
+const palindrome = [1, 2, 3, 2, 1];
+const notPalindrome = [1, 2, 3, 4, 5];
+// Результат: true для palindrome, false для notPalindrome
+
+// Ваш код здесь:
+
+
+// =========================
+// Поздравляем! Вы изучили все основные методы массивов!
+// =========================
