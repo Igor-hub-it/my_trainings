@@ -475,22 +475,30 @@ let employeesCount = departments.reduce((accum, el) => {
 // Результат: ['JavaScript', 'React', 'Python', 'Django', 'Vue', 'Communication', 'Recruitment']
 
 // Ваш код здесь:
-let uniqSkills = [...new Set(departments.reduce((accum, el) => {
-  accum = accum.concat(...el.employees.reduce((acc, user) => {
-    acc.push(...user.skills)
-    return acc
-  }, []))
-  return accum
-}, []))]
+// let uniqSkills = [...new Set(departments.reduce((accum, el) => {
+//   accum = accum.concat(...el.employees.reduce((acc, user) => {
+//     acc.push(...user.skills)
+//     return acc
+//   }, []))
+//   return accum
+// }, []))]
 
-console.log(uniqSkills)
+let uniqSkills = [...new Set(departments.map(el => el.employees.map(el => el.skills).flat()).flat())]
 
+// console.log(uniqSkills)
 
 // 15.3. Найдите отдел с самой высокой средней зарплатой
 // Результат: { name: 'IT', averageSalary: 55000 }
 
 // Ваш код здесь:
+let maxAvgSal = departments.map(el => ({name: el.name, avgEmp: el.employees.reduce((accum, user) => {
+  accum += user.salary
+  return accum
+}, 0)/el.employees.length})).reduce((maxAccum, el) => 
+  maxAccum.avgEmp > el.avgEmp ? maxAccum : el
+)
 
+console.log(maxAvgSal)
 
 // 15.4. Создайте объект с количеством сотрудников по навыкам
 // Результат: { 'JavaScript': 2, 'React': 1, 'Python': 1, 'Django': 1, 'Vue': 1, 'Communication': 2, 'Recruitment': 1 }
