@@ -12,7 +12,7 @@ const users = [
   { name: 'Елена', age: 28, city: 'Москва' }
 ];
 
-console.log('Исходные массивы:', { numbers, fruits, users });
+// console.log('Исходные массивы:', { numbers, fruits, users });
 
 // =========================
 // ЗАДАНИЕ 1: Методы добавления/удаления элементов
@@ -498,7 +498,7 @@ let maxAvgSal = departments.map(el => ({name: el.name, avgEmp: el.employees.redu
   maxAccum.avgEmp > el.avgEmp ? maxAccum : el
 )
 
-console.log(maxAvgSal)
+// console.log(maxAvgSal)
 
 // 15.4. Создайте объект с количеством сотрудников по навыкам
 // Результат: { 'JavaScript': 2, 'React': 1, 'Python': 1, 'Django': 1, 'Vue': 1, 'Communication': 2, 'Recruitment': 1 }
