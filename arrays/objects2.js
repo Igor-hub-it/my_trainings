@@ -42,6 +42,35 @@ let obj23 = {
     }
 }
 
-let clone = Object.assign({}, res, obj23)
+let clone21 = Object.assign({}, res, obj23)
 
-console.log(clone)
+// console.log(clone21)
+
+let user22 = {
+    name: "John",
+    sizes: {
+        height: 182,
+        width: 50
+    }
+};
+  
+let clone = Object.assign({}, user22);
+
+console.log( user22.sizes === clone.sizes ); // true, тот же объект
+
+// user и clone обладают общим свойством sizes
+user22.sizes.width++;       // изменяем свойства в первом объекте
+console.log(clone.sizes.width); // 51, видим результат в другом
+
+const obj24 = {
+    art: "joker",
+    drink: "kvas"
+}
+
+obj24.drink = "cola"
+
+const obj25 = obj24
+
+obj25.art = "river"
+
+console.log(obj24)
