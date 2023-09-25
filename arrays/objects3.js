@@ -55,3 +55,37 @@ const person2 = new Person("Михаил", 30, "Харьков");
 
 person1.sayHello();
 person2.sayHello();
+
+const user = {
+    _name: "Пользователь",
+    _age: 0,
+    
+    get name() {
+        return this._name;
+    },
+    
+    set name(value) {
+        if (value.length > 0) {
+            this._name = value;
+        }
+    },
+    
+    get age() {
+        return this._age;
+    },
+    
+    set age(value) {
+        if (value >= 0 && value <= 150) {
+            this._age = value;
+        }
+    }
+};
+
+const user33 = {
+    name_user: "Igor",
+    age_user: 23, 
+
+    get name() {
+        return this.name_user
+    }
+}
