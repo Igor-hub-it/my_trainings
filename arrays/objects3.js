@@ -36,3 +36,22 @@ let me = {
         console.log(`Возраст обновлен на ${newAge}`);
     }
 }
+
+console.log("Мои хобби:", me.getHobbies())
+
+
+function Person(name, age, city) {
+    this.name = name;
+    this.age = age;
+    this.city = city;
+    
+    this.sayHello = function() {
+        console.log(`Привет! Я ${this.name} из ${this.city}`);
+    };
+}
+
+const person1 = new Person("Анна", 25, "Львов");
+const person2 = new Person("Михаил", 30, "Харьков");
+
+person1.sayHello();
+person2.sayHello();
