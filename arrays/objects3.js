@@ -37,7 +37,7 @@ let me = {
     }
 }
 
-console.log("Мои хобби:", me.getHobbies())
+// console.log("Мои хобби:", me.getHobbies())
 
 
 function Person(name, age, city) {
@@ -53,10 +53,10 @@ function Person(name, age, city) {
 const person1 = new Person("Анна", 25, "Львов");
 const person2 = new Person("Михаил", 30, "Харьков");
 
-person1.sayHello();
-person2.sayHello();
+// person1.sayHello();
+// person2.sayHello();
 
-const user = {
+const user31 = {
     _name: "Пользователь",
     _age: 0,
     
@@ -89,3 +89,7 @@ const user33 = {
         return this.name_user
     }
 }
+
+user31.age = 20
+user31._age = 22
+console.log(user31.age)
