@@ -92,4 +92,18 @@ const user33 = {
 
 user31.age = 20
 user31._age = 22
-console.log(user31.age)
+// console.log(user31.age)
+
+// console.log(Object.keys(user33).length)
+// for(let i = 0; i < Object.keys(user33).length; i++) {
+//     console.log(Object.keys(user33)[i])
+// }
+// console.log(Object.keys(user33))
+
+for (let key in user33) {
+    // console.log(key, user33[key]);
+}
+
+// for (let key of user33) {
+//     console.log(key, user33[key]);   НЕ СРАБОТАЕТ
+// }

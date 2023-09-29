@@ -17,3 +17,17 @@ let endWithName = str11.endsWith("Игорь")
 let sliceStr = str11.slice(name11)
 
 // console.log(sliceStr)
+// console.log(str11)
+let substringStr = str11.substring(name11)
+let substrStr = str11.substr(name11, 5)
+
+// console.log(substringStr)
+// console.log(substrStr)
+
+for(let i = 0; i<str11.length; i++) {
+    // console.log(str11[i])
+}
+
+for(let letter in str11) {
+    // console.log(str11[letter])
+}
