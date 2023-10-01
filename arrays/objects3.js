@@ -83,11 +83,12 @@ const user31 = {
 
 const user33 = {
     name_user: "Igor",
-    age_user: 23, 
+    age_user: 23,
+    svvo: '123' 
 
-    get name() {
-        return this.name_user
-    }
+    // get name() {
+    //     return this.name_user
+    // }
 }
 
 user31.age = 20
@@ -104,6 +105,12 @@ for (let key in user33) {
     // console.log(key, user33[key]);
 }
 
-// for (let key of user33) {
-//     console.log(key, user33[key]);   НЕ СРАБОТАЕТ
-// }
+for (let key of Object.keys(user33)) {
+    // console.log(key, user33[key]);  
+}
+
+for (let el of Object.values(user33)) {
+    // console.log(el);  
+}
+
+// console.log(Object.keys(user33).length)

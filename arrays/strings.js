@@ -28,6 +28,6 @@ for(let i = 0; i<str11.length; i++) {
     // console.log(str11[i])
 }
 
-for(let letter in str11) {
-    // console.log(str11[letter])
+for(let letter of str11) {
+    // console.log(letter)
 }
