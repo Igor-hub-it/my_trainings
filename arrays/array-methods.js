@@ -542,3 +542,7 @@ let arr123 = [1, 2, 3, 33, 22, 11]
 for(let el of arr123) {
   // console.log(el)
 }
+
+for(let [idx, val] of arr123.entries()) {
+  // console.log(idx, val)
+}

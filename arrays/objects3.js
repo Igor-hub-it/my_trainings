@@ -106,11 +106,15 @@ for (let key in user33) {
 }
 
 for (let key of Object.keys(user33)) {
-    // console.log(key, user33[key]);  
+    // console.log(key);  
 }
 
 for (let el of Object.values(user33)) {
     // console.log(el);  
+}
+
+for(let [sv, el] of Object.entries(user33)) {
+    // console.log(sv, el)
 }
 
 // console.log(Object.keys(user33).length)
