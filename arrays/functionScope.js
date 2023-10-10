@@ -32,11 +32,11 @@ if(true) {
 // })()
 
 let foo2Sc = function(arg) {
-    console.log(arg)
+    // console.log(arg)
 }.call(null, 123)
 
 let foo3Sc = function(...arg) {
-    console.log(arg)
+    // console.log(arg)
 }.call(null, [1, 2, 3])
 
 // foo2Sc().call()
