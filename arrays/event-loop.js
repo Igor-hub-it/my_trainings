@@ -269,3 +269,75 @@
 // while (Date.now() - start < 50) {}
 // console.log('I-sync-end')//2
 
+
+// ===== Упражнение 16: звёздочка микрозадач (голодание макрозадач) =====
+// Внимание: пример может задержать таймеры, увеличьте лимит и наблюдайте.
+// -------------------------------------------------
+// console.log('J-sync')//1
+// let j = 0
+// function scheduleMicro() {
+//   if (j < 5) { // увеличьте до 100 и посмотрите задержку таймера
+//     Promise.resolve().then(() => {
+//       console.log('J-micro', ++j)//3/4/5/6/7
+//       scheduleMicro()
+//     })
+//   }
+// }
+// scheduleMicro()
+// setTimeout(() => console.log('J-timeout'), 0)//8
+// console.log('J-sync-end')//2
+
+
+// ===== Упражнение 17: resolved Promise vs new Promise =====
+// Обратите внимание, когда колбэки попадают в очередь.
+// -------------------------------------------------
+// console.log('K-sync')//1
+// Promise.resolve().then(() => console.log('K-then-resolved'))//3
+// new Promise(r => r()).then(() => console.log('K-then-new-promise'))//4
+// console.log('K-sync-end')//2
+
+
+// ===== Упражнение 18: setInterval и микрозадачи внутри него =====
+// Остановите интервал после пары тиков. Смотрите порядок внутри каждого тика.
+// -------------------------------------------------
+// console.log('L-sync')//1
+// let lCount = 0
+// const id = setInterval(() => {
+//   console.log('L-interval-start', ++lCount)//3//7
+//   Promise.resolve().then(() => console.log('L-micro-in-interval'))//5//9
+//   queueMicrotask(() => console.log('L-qm-in-interval'))//6//10
+//   console.log('L-interval-end', lCount)//4//8
+//   if (lCount >= 2) clearInterval(id)
+// }, 0)
+// console.log('L-sync-end')//2
+
+
+// ===== Упражнение 19: вложенные таймеры и микрозадачи в каждом =====
+// Микрозадачи из первого таймера должны выполниться до второго таймера.
+// -------------------------------------------------
+// console.log('M-sync')//1
+// setTimeout(() => {
+//   console.log('M-t1-start')//3
+//   Promise.resolve().then(() => console.log('M-t1-micro'))//5
+//   console.log('M-t1-end')//4
+//   setTimeout(() => {
+//     console.log('M-t2-start')//7
+//     queueMicrotask(() => console.log('M-t2-qm'))//9
+//     console.log('M-t2-end')//8
+//   }, 0)
+// }, 0)
+// console.log('M-sync-end')//2
+
+
+// ===== Упражнение 20: две независимые цепочки промисов =====
+// Отслеживайте очередность then-ов из разных цепочек + queueMicrotask.
+// -------------------------------------------------
+// console.log('N-sync')//1
+// const p1 = Promise.resolve('N1')
+// const p2 = Promise.resolve('N2')
+// p1.then(v => { console.log('N-p1-then-1', v); return v })//6
+//   .then(v => console.log('N-p1-then-2', v))//8
+// p2.then(v => { console.log('N-p2-then-1', v); return v })//7
+//   .then(v => console.log('N-p2-then-2', v))//9
+// queueMicrotask(() => console.log('N-qm'))//5
+// console.log('N-sync-end')//2
