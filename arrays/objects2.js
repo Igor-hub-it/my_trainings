@@ -74,3 +74,28 @@ const obj25 = obj24
 obj25.art = "river"
 
 // console.log(obj24)
+
+// console.log(Object.getOwnPropertyDescriptors(obj24))
+
+"use strict"
+
+
+Object.defineProperty(obj24, "art", {writable: false})
+
+// writable
+// enumerable
+// configurable
+// value
+
+let obj26 = {
+    name: "Igor",
+    car: "BMW",
+
+    get myName() {
+        return this.name
+    },
+
+    set myName(value) {
+        this.name = value
+    }
+}
