@@ -1,17 +1,24 @@
 let alive = {
-    life: true
+    life: true,
+    sayAlive() {
+        console.log("I am alive")
+    }
 }
 
 let animal = {
-    eats: true
+    eats: true,
+    __proto__: alive
 }
 
 let rabbit = {
-    jumps: true
+    jumps: true,
+    sleep: function() {
+        this.isSleeping = true
+    }
 }
 
-animal.__proto__ = alive
 rabbit.__proto__ = animal
 
-console.log(rabbit.life, rabbit.eats, rabbit.jumps)
+// console.log(rabbit.life, rabbit.eats, rabbit.jumps)
 
+// console.log(Object.keys(rabbit))
