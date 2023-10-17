@@ -43,3 +43,16 @@ function fooo() {
 }
 
 // fooo.delay(1000)
+
+let objProto = Object.assign(rabbit)
+
+// console.log(Object.getOwnPropertyDescriptors(objProto))
+let animal2 = {
+    eats: true
+}
+
+let rabbit2 = Object.create(animal2, {name: {value: 'Igor'}, surname: {value: "pin"}})
+
+// console.log(rabbit2)
+// console.log(rabbit2.eats)
+// console.log(Object.getPrototypeOf(rabbit2))
