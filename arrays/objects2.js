@@ -97,5 +97,18 @@ let obj26 = {
 
     set myName(value) {
         this.name = value
+    },
+
+    array: [1, 2, 3, 4, 5],
+    obj: {
+        bla: "balbla"
     }
 }
+
+let obj27 = Object.assign({}, obj26)
+
+// console.log(obj27)
+
+let obj28 = structuredClone(obj27)
+
+// console.log(obj28)
