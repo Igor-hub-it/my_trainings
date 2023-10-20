@@ -25,7 +25,7 @@ class Animal {
     }
 
     run() {
-        this.position += speed
+        this.position += this.speed
     }
 
     rename(name) {
@@ -38,8 +38,15 @@ class Cat extends Animal {
         super(name, speed)
         this.color = color
     }
+
+    doubleRun() {
+        super.run()
+        super.run()
+    }
 }
 
-let Lych = new Cat("Lych", 999, 'white')
+let Lych = new Cat("Lych", 5, 'white')
 
 // console.log(Lych)
+Lych.doubleRun()
+// console.log(Lych.position)
