@@ -111,4 +111,4 @@ let obj27 = Object.assign({}, obj26)
 
 let obj28 = structuredClone(obj27)
 
-// console.log(obj28)
+// console.log(Object.entries(obj28))
