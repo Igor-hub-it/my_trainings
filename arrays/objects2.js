@@ -56,11 +56,11 @@ let user22 = {
   
 let clone = Object.assign({}, user22);
 
-console.log( user22.sizes === clone.sizes ); // true, тот же объект
+// console.log( user22.sizes === clone.sizes ); // true, тот же объект
 
 // user и clone обладают общим свойством sizes
 user22.sizes.width++;       // изменяем свойства в первом объекте
-console.log(clone.sizes.width); // 51, видим результат в другом
+// console.log(clone.sizes.width); // 51, видим результат в другом
 
 const obj24 = {
     art: "joker",
@@ -73,4 +73,4 @@ const obj25 = obj24
 
 obj25.art = "river"
 
-console.log(obj24)
+// console.log(obj24)
